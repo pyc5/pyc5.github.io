@@ -17,7 +17,7 @@ const view = (id, args = {}) => {
   feather.replace()
 }
 
-const API_SERVER = 'https://sweet-moth-32.deno.dev/'
+const API_SERVER = 'https://sweet-moth-32.deno.dev'
 
 const api = async (endpoint, data = {}) => {
   return await (await fetch(`${API_SERVER}/${endpoint}`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) })).json()
