@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Система Тестирования</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="index.css" rel="stylesheet" />
+
+    <script type="text/template" id="login-template" title="Система Тестирования | Вход">
+      <div class="login">
+        <main class="form-signin w-100 m-auto">
+          <div class="form-floating">
+            <input type="name" class="form-control" id="login-username" placeholder="Name" required />
+            <label for="login-username">Имя</label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" onclick="window.start()">Вход</button>
+        </main>
+      </div>
+    </script>
+
+    <script type="text/template" id="test-template" title="Система Тестирования">
+      <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">${username}</a>
+        <button
+          class="navbar-toggler position-absolute d-md-none collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#sidebarMenu"
+          aria-controls="sidebarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-nav">
+          <div class="nav-item text-nowrap">
+            <a class="nav-link px-3" href="#" onclick="window.logout()">Выход</a>
+          </div>
+        </div>
+      </header>
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3 sidebar-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#" id="tests-link" onclick="window.start(window.data.username)">
+                    <span data-feather="book-open" class="align-text-bottom"></span>
+                    Тесты
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link invisible" aria-current="page" href="#" id="results-link" onclick="window.results()">
+                    <span data-feather="table" class="align-text-bottom"></span>
+                    Результаты
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="m-3" id="test-content">
+            </div>
+          </main>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="test-content-template">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom list-group" >
+          <h1 class="h2" id="test-title"></h1>
+          <div class="" id="test-questions"></div>
+          <a href="#" id="done" onclick="window.finish()" class="btn btn-primary btn-lg">Готово!</a>
+      </div>
+    </script>
+
+    <script type="text/template" id="test-question-template">
+      <div class="list-group list-group-checkable mt-3 mb-3 d-grid gap-2 border-0 w-auto">
+        <h5>${question}</h5>
+        ${answers}
+      </div>
+    </script>
+
+    <script type="text/template" id="test-answer-template">
+      <input class="list-group-item-check pe-none" type="${type}" name="test-answer-${i}" id="test-answer-${i}-${j}" value="" onclick="window.select(${i}, ${j}, '${type}')" />
+      <label class="list-group-item rounded-3 py-3" for="test-answer-${i}-${j}">${a}</label>
+    </script>
+
+    <script type="text/template" id="results-template">
+      <h3>Результаты</h3>
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Тест</th>
+            <th>Имя</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Оценка</th>
+            <th>Фокус</th>
+          </tr>
+        </thead>
+        <tbody id="results-table">
+        </tbody>
+      </table>
+    </script>
+  </head>
+
+  <script type="text/template" id="test-done">
+    <h3>Тест выполнен!</h3>
+  </script>
+
+  <body id="app"></body>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script src="index.js"></script>
+</html>
